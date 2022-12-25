@@ -1,0 +1,30 @@
+{% extends "__layout.twig" %}
+
+{% block menu %}
+    <div class="col-2">
+    {% include "menu.twig" %}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+
+    <hr>
+
+    <h1>{{ title }}</h1>
+
+    <ul class="nav nav-pills my-2">
+        {% for item in nav %}
+        <li class="nav-item">
+            <a class="nav-link {{ item.section == section ? 'active' }}" href="/cats_objects/{{ id ~ "?show=" ~ item.section }}">
+                {{ item.section_name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% block objectContent %}
+
+{% endblock %}
+
+{% endblock %}

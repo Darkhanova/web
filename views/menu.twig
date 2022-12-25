@@ -1,0 +1,9 @@
+{% from "forms.twig" import link as cat_link %}
+
+<ul class="list-group">
+    {% for item in cats %}
+    <li class="list-group-item {{ title == item.title ? 'active' }}">
+        {{ cat_link(item.title, "/cats_objects/" ~ item.id, "cat-link", False) }}
+    </li>
+    {% endfor %}
+</ul>

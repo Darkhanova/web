@@ -1,0 +1,41 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+	<h1>Изменение кошечки</h1>
+	<hr>
+
+	{% if message %}
+		<div class="alert alert-info">
+			{{ message }}
+			<a href="/cats_objects/{{ id }}">Открыть кошечку</a>
+		</div>
+	{% endif %}
+
+	<form method="POST" enctype="multipart/form-data" class="row g-3">
+		<div class="col-4">
+			<label class="form-label">Название</label>
+			<input type="text" class="form-control" name="title" value="{{object.title}}">
+		</div>
+		<div class="col-4">
+			<label class="form-label">Тип</label>
+			<select class="form-control" name="type">
+				{% for type in types %}
+                    <option name="type" value="{{ type.type }}" {% if object.type == type.type %}selected{% endif %}>
+										{{ type.type|title }}
+										</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Картинка</label>
+			<input class="form-control" type="file" name="image">
+		</div>
+		<div class="col-12">
+			<textarea name="info" placeholder="Полное описание..." class="form-control" rows="5">{{object.info}}</textarea>
+		</div>
+		<div class="col-12 text-end">
+			<button type="submit" class="btn btn-primary">Изменить</button>
+		</div>
+	</form>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Поиск</h1>
+
+    <form class="row g-3 mb-3" action="">
+        <div class="col">
+            <label class="form-label">Тип</label>
+            <select class="form-select" name="type">
+                <option value="">Все</option>
+                {% for type in types %}
+                {# Берем значения из БД для поиска #}
+                    <option value="{{ type.type }}" {{ type == type.type|title ? "selected" }}>{{ type.type|title }}</option>
+				{% endfor %}
+                {# <option value="Длинношёрстная" {{ type == "Длинношёрстная" ? "selected" }}>Длинношёрстная</option>
+                <option value="Короткошёрстная" {{ type == "Короткошёрстная" ? "selected" }}>Короткошёрстная</option> #}
+            </select>
+        </div>
+
+        <div class="col">
+            <label class="form-label" >Название</label>
+            <input class="form-control" type="text" name="title" autocomplete="off" value={{ title }} >
+        </div>
+
+
+
+        <div class="col mt-5">
+            <button class="btn btn-primary" type="submit">Найти</button>
+        </div>
+    </form>
+
+    {{ include('menu.twig', {'cats' : cats}) }}
+{% endblock %}
